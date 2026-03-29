@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte interactive — ArchiBron</title>
+    <meta
+      name="description"
+      content="Widget de carte interactive pour Squarespace, avec filtres, recherche, clustering et liste synchronisée."
+    />
+
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+
+    <!-- MarkerCluster -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="map-widget" data-map-widget>
+      <header class="toolbar" aria-label="Filtres de la carte">
+        <div class="toolbar__search">
+          <label class="sr-only" for="searchInput">Rechercher un lieu</label>
+          <input
+            id="searchInput"
+            type="search"
+            class="search-input"
+            placeholder="Rechercher un lieu, un architecte, un quartier…"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="toolbar__actions">
+          <button type="button" class="ghost-button" id="fitBoundsButton">
+            Ajuster la vue
+          </button>
+          <button type="button" class="ghost-button" id="resetFiltersButton">
+            Réinitialiser
+          </button>
+        </div>
+      </header>
+
+      <section class="filters" aria-labelledby="filtersTitle">
+        <div class="filters__header">
+          <h2 id="filtersTitle" class="filters__title">Catégories</h2>
+          <p class="filters__count" id="resultsCount" aria-live="polite">Chargement…</p>
+        </div>
+        <div class="filter-pills" id="categoryFilters" role="toolbar" aria-label="Filtrer par catégorie"></div>
+      </section>
+
+      <div class="layout">
+        <aside class="sidebar" aria-labelledby="placesTitle">
+          <div class="sidebar__header">
+            <h2 id="placesTitle" class="sidebar__title">Lieux visibles</h2>
+            <p class="sidebar__subtitle">
+              Cliquez sur un lieu pour centrer la carte et ouvrir sa fiche.
+            </p>
+          </div>
+
+          <div class="empty-state hidden" id="emptyState" role="status" aria-live="polite">
+            <strong>Aucun résultat</strong>
+            <span>Essayez une autre recherche ou activez d'autres catégories.</span>
+          </div>
+
+          <ul class="results-list" id="resultsList" aria-label="Liste des lieux"></ul>
+        </aside>
+
+        <section class="map-panel" aria-label="Carte interactive">
+          <div id="map" class="map-canvas"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Leaflet -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+
+    <!-- MarkerCluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
